@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+
+  <h3>污染城市列表</h3>
+  <ul id="aqi-list">
+<!--   
+    <li>第一名：福州（样例），10</li>
+  	<li>第二名：福州（样例），10</li> -->
+  </ul>
+
+<script type="text/javascript">
+
+var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+
+(function () {
+
+  /*
+  在注释下方编写代码
+  遍历读取aqiData中各个城市的数据
+  将空气质量指数大于60的城市显示到aqi-list的列表中
+  */
+
+     var rank = ['第一名','第二名','第三名','第四名','第五名'];
+     for(var i=0; i<aqiData.length; i++){
+     	if(aqiData[i][1]>60){
+     		var otest = document.getElementById("aqi-list");
+     		var newNode = document.createElement("li");
+     		newNode.innerHTML = aqiData[i][0]+ ", "+aqiData[i][1];
+     		otest.appendChild(newNode);
+     	}
+     }
+
+     var oli = otest.getElementsByTagName('li');
+     var arr=[];
+     for(var i=0; i<oli.length; i++){
+     	arr[i] = oli[i];
+     }
+     arr.sort(function(li1,li2){
+     	var n1 = parseInt(li1.innerHTML.substring(3));        
+     	var n2 = parseInt(li2.innerHTML.substring(3));
+     	return n2-n1;
+     })
+
+     for(var i=0;i<arr.length;i++){
+     	otest.appendChild(arr[i]);
+     }
+
+     for(var i=0; i<arr.length;i++){
+          var x=otest.getElementsByTagName('li')[i].innerHTML
+          otest.getElementsByTagName('li')[i].innerHTML = rank[i] +" " + x;
+
+	}
+    //方案二
+
+    // var oList = document.getElementById("aqi-list");
+    //     var arr = ["一","二","三","四","五"];
+    //     //sort 从大到小
+    //     aqiData.sort(function(a,b){
+    //       return b[1]-a[1];
+    //     });
+    //     oList.innerHTML = "";
+    //     for(var i=0;i<aqiData.length;i++){
+          
+    //       if(aqiData[i][1]>60){
+    //         var oLi = document.createElement("li");
+    //         oLi.innerHTML = '第'+arr[i]+'名：'+aqiData[i][0]+','+aqiData[i][1];
+    //         oList.appendChild(oLi);
+    //       }
+    //     }
+
+})();
+
+</script>
+</body>
+</html>
